@@ -1,0 +1,10 @@
+# Reference images
+*.png
+*.jpg
+*.jpeg
+
+# Temporary screenshots
+temporary screenshots/
+
+# Node modules (if any)
+node_modules/
