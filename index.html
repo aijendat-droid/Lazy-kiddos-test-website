@@ -230,14 +230,25 @@
       .lang-sep { font-size: 1rem; }
 
       /* HERO */
-      .hero { padding: 0 1.25rem 3.5rem; }
-      .hero-eyebrow { left: 1.25rem; top: 5rem; font-size: 0.6rem; }
-      .hero-meta { flex-direction: column; gap: 1.25rem; align-items: flex-start; }
-      .hero-meta p { font-size: 0.8rem; max-width: 100%; }
+      .hero {
+        padding: 0 1.25rem 3rem;
+        min-height: 100svh;
+        justify-content: flex-end;
+      }
+      .hero-eyebrow {
+        position: static;
+        margin-bottom: 1rem;
+        font-size: 0.62rem;
+      }
+      .hero-inner { max-width: 100%; }
+      .hero-statement { font-size: clamp(3.8rem, 14vw, 7rem); }
+      .hero-subline { font-size: clamp(0.9rem, 3.5vw, 1.1rem); margin-top: 0.6rem; }
+      .hero-meta { flex-direction: column; gap: 1rem; align-items: flex-start; margin-top: 1.25rem; }
+      .hero-meta p { font-size: 0.78rem; max-width: 38ch; line-height: 1.65; }
       .hero-scroll { display: none; }
-      /* Reduce and thin out hero shapes on mobile */
+      /* Keep only 2 shapes in hero on mobile */
       .hero-shapes .shape-outer:nth-child(n+3) { display: none; }
-      .hero-shapes .shape-outer { opacity: 0.5 !important; }
+      .hero-shapes .shape-outer { opacity: 0.45 !important; }
 
       /* WORK / GALLERY */
       .work-section { padding: 3rem 0; }
@@ -976,7 +987,7 @@
       <div class="hero-meta">
         <p>
           <span data-lang="en">The average age of a CMO is 38, which makes understanding the behaviour and mindset of Generation Z genuinely difficult. That's why we're here — we are Gen Z ourselves, so you can skip the unnecessary complications and rest assured that things are being handled by people who actually know Gen Z, not just guessing.</span>
-          <span data-lang="cs">Průměrný věk CMO je 38 let, tudíž rozumět tomu, co dělá a jak se chová Generace Z, je velice složité. Proto jsme tu my, kteří Generací Z sami jsme, a vy si tak můžete ušetřit zbytečné komplikace<br>a mít jistotu, že věci dělají lidé, kteří o Generaci Z opravdu něco vědí, a ne jen hádají.</span>
+          <span data-lang="cs">Průměrný věk CMO je 38 let, tudíž rozumět tomu, co dělá a jak se chová Generace Z, je velice složité. Proto jsme tu my, kteří Generací Z sami jsme, a vy si tak můžete ušetřit zbytečné komplikace a mít jistotu, že věci dělají lidé, kteří o Generaci Z opravdu něco vědí, a ne jen hádají.</span>
         </p>
         <div class="hero-scroll">Scroll</div>
       </div>
