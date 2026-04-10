@@ -1,7 +1,10 @@
-# Reference images
+# Reference images in root
 *.png
 *.jpg
 *.jpeg
+
+# Allow brand asset logo
+!brand_assets/LK_logotyp_sekundarni_lime_RGB.png
 
 # Temporary screenshots
 temporary screenshots/

@@ -200,6 +200,21 @@
       background: rgba(252,255,126,0.2);
     }
 
+    @media (max-width: 640px) {
+      .hero-meta {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+      .hero-meta p {
+        font-size: 0.8rem;
+        max-width: 100%;
+      }
+      .hero-scroll { display: none; }
+      nav { padding: 1.25rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+    }
+
     /* ── WORK ── */
     .work-section {
       padding: 5rem 2.5rem;
@@ -701,27 +716,6 @@
     .gallery-card:hover .gallery-card-cta { color: var(--lime); }
     .gallery-cta-arrow { display: inline-block; transition: transform 0.2s ease; }
     .gallery-card:hover .gallery-cta-arrow { transform: translateX(4px); }
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-    .gallery-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(252,255,126,0.18);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.2s ease;
-    }
-    .gallery-dot.active { background: var(--lime); }
-    .gallery-dot:focus-visible { outline: 1px solid rgba(252,255,126,0.4); outline-offset: 3px; }
-
     /* ── SERVICE ACCORDION ── */
     .service-row {
       border-top: 1px solid var(--rule);
@@ -973,7 +967,7 @@
           <div class="gallery-card-overlay"></div>
           <div class="gallery-card-body">
             <div class="gallery-card-cats">
-              <span class="gallery-cat">Focus Group</span>
+              <span class="gallery-cat">Focus Groups</span>
             </div>
             <div class="gallery-card-title">DrWitt</div>
             <div class="gallery-card-desc">
@@ -996,7 +990,7 @@
           <div class="gallery-card-overlay"></div>
           <div class="gallery-card-body">
             <div class="gallery-card-cats">
-              <span class="gallery-cat">Brainstorming</span>
+              <span class="gallery-cat">Brainstormings</span>
             </div>
             <div class="gallery-card-title">Air Bank</div>
             <div class="gallery-card-desc">
@@ -1019,7 +1013,7 @@
           <div class="gallery-card-overlay"></div>
           <div class="gallery-card-body">
             <div class="gallery-card-cats">
-              <span class="gallery-cat">Focus Group</span>
+              <span class="gallery-cat">Focus Groups</span>
             </div>
             <div class="gallery-card-title">Plzeňský Prazdroj</div>
             <div class="gallery-card-desc">
@@ -1037,13 +1031,6 @@
 
     </div><!-- /gallery-track -->
 
-    <!-- Dot indicators -->
-    <div class="gallery-dots" id="work-dots">
-      <button class="gallery-dot active" aria-label="Slide 1"></button>
-      <button class="gallery-dot" aria-label="Slide 2"></button>
-      <button class="gallery-dot" aria-label="Slide 3"></button>
-      <button class="gallery-dot" aria-label="Slide 4"></button>
-    </div>
 
   </section>
 
@@ -1093,7 +1080,7 @@
     </div>
     <div class="service-row" onclick="toggleService(this)">
       <div class="service-row-top">
-        <span class="service-name">FOCUS GROUP</span>
+        <span class="service-name">FOCUS GROUPS</span>
         <span class="service-toggle-icon">+</span>
       </div>
       <div class="service-expand">
@@ -1121,7 +1108,7 @@
     </div>
     <div class="service-row" onclick="toggleService(this)">
       <div class="service-row-top">
-        <span class="service-name">BRAINSTORM</span>
+        <span class="service-name">BRAINSTORMINGS</span>
         <span class="service-toggle-icon">+</span>
       </div>
       <div class="service-expand">
@@ -1314,7 +1301,6 @@
       var track = document.getElementById('work-track');
       var prevBtn = document.getElementById('work-prev');
       var nextBtn = document.getElementById('work-next');
-      var dots = document.querySelectorAll('#work-dots .gallery-dot');
       var current = 0;
 
       function slides() { return track.querySelectorAll('.gallery-slide'); }
@@ -1326,14 +1312,12 @@
         current = index;
         var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
         track.scrollTo({ left: sl[index].offsetLeft - pad, behavior: 'smooth' });
-        dots.forEach(function(d, i) { d.classList.toggle('active', i === index); });
         prevBtn.disabled = index === 0;
         nextBtn.disabled = index === sl.length - 1;
       }
 
       prevBtn.addEventListener('click', function() { scrollTo(current - 1); });
       nextBtn.addEventListener('click', function() { scrollTo(current + 1); });
-      dots.forEach(function(dot, i) { dot.addEventListener('click', function() { scrollTo(i); }); });
 
       var scrollTimer;
       track.addEventListener('scroll', function() {
@@ -1346,7 +1330,7 @@
             var d = Math.abs(s.offsetLeft - pad - track.scrollLeft);
             if (d < minD) { minD = d; best = i; }
           });
-          if (best !== current) { current = best; dots.forEach(function(d, i) { d.classList.toggle('active', i === best); }); prevBtn.disabled = best === 0; nextBtn.disabled = best === sl.length - 1; }
+          if (best !== current) { current = best; prevBtn.disabled = best === 0; nextBtn.disabled = best === sl.length - 1; }
         }, 80);
       });
     })();
