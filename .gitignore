@@ -3,8 +3,8 @@
 *.jpg
 *.jpeg
 
-# Allow brand asset logo
-!brand_assets/LK_logotyp_sekundarni_lime_RGB.png
+# Allow brand asset logos
+!brand_assets/*.png
 
 # Temporary screenshots
 temporary screenshots/
