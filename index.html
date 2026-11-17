@@ -227,7 +227,7 @@
   .box-stage.open .goodie:nth-child(4) { transition-delay: .36s; }
   /* ---------- Paper sheet (rounded transition over the hero) ---------- */
   .sheet {
-    position: relative; z-index: 1;
+    position: relative;
     background: var(--paper);
     border-radius: var(--radius) var(--radius) 0 0;
     margin-top: calc(-1 * var(--radius));
@@ -319,7 +319,7 @@
 
   /* Instagram */
   .ig-frame {
-    position: relative;
+    position: relative; z-index: 6;
     aspect-ratio: 985 / 328;
     background: var(--ink);
     border: 2px solid var(--ink);
