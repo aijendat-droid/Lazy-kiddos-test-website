@@ -336,21 +336,18 @@
   .btn-ink { background: var(--ink); color: var(--lime); }
   .btn-ink:hover { background: var(--purple); }
 
-  /* ---------- Floating LK clouds (from the previous site) ---------- */
+  /* ---------- Floating LK clouds: full screen, interactive ---------- */
   .hero, .contact { position: relative; overflow: hidden; }
   .hero > .wrap, .contact > .wrap { position: relative; z-index: 1; }
-  .clouds { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-  .cloud { position: absolute; opacity: 0; animation: cloud-in 2.4s cubic-bezier(.23, .86, .39, .96) forwards; }
-  .cloud svg { display: block; width: var(--w); height: auto; overflow: visible; animation: cloud-float var(--t, 14s) ease-in-out infinite; }
-  .cloud.lime svg { fill: #fcff6c; opacity: .28; filter: drop-shadow(0 0 12px rgba(252,255,126,.9)) drop-shadow(0 0 30px rgba(252,255,126,.5)) drop-shadow(0 0 60px rgba(252,255,126,.25)); }
-  .cloud.purple svg { fill: var(--purple); opacity: .5; filter: drop-shadow(0 0 12px rgba(75,10,140,.9)) drop-shadow(0 0 30px rgba(75,10,140,.5)); }
-  .cloud.paper svg { fill: var(--paper); opacity: .18; filter: drop-shadow(0 0 20px rgba(244,240,231,.6)); }
-  @keyframes cloud-in {
-    from { opacity: 0; transform: translateY(-150px) rotate(calc(var(--r) - 15deg)); }
-    to   { opacity: 1; transform: translateY(0) rotate(var(--r)); }
-  }
-  @keyframes cloud-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
-  @media (max-width: 760px) { .cloud svg { width: calc(var(--w) * .55); } }
+  .cloud-layer { position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+  .fc { position: absolute; left: 0; top: 0; will-change: transform; opacity: 0; transition: opacity 1.2s ease; }
+  .cloud-layer.ready .fc { opacity: 1; }
+  .fc svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .fc.lime svg { fill: #fcff6c; opacity: .32; filter: drop-shadow(0 0 18px rgba(252,255,126,.8)); }
+  .fc.purple svg { fill: var(--purple); opacity: .45; filter: drop-shadow(0 0 16px rgba(75,10,140,.7)); }
+  .fc.paper svg { fill: var(--paper); opacity: .3; filter: drop-shadow(0 0 16px rgba(244,240,231,.6)); }
+  html.cloud-hover, html.cloud-hover * { cursor: grab !important; }
+  html.cloud-grab, html.cloud-grab * { cursor: grabbing !important; user-select: none !important; }
 
   /* ---------- Hand-made bits ---------- */
   .hand {
@@ -407,12 +404,12 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     html { scroll-behavior: auto; }
-    .cloud { opacity: 1; transform: rotate(var(--r)); }
   }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lk-mark" viewBox="0 0 325.4 284.5"><path d="M230.6,147.6c0-.1,0-.2,0-.3,0-.6,0-1.1-.1-1.7-1.1-10.5-9.6-18.9-20.1-20.1-2.6-.3-5.1-.1-7.4.4-4.1.9-7.8,3.2-10.5,6.5,0,0,0,0,0,0l-10.9,12.7c-.7.8-1.9,1-2.8.4-.9-.7-1-2-.3-2.9l4.3-5,1.5-1.6c.5-.6,1.1-1.2,1.5-1.9,3.1-4.1,5-9.1,5.1-14.3,0-1.3,0-2.5-.2-3.6-.2-1-.4-2-.7-3-3.2-10.3-13.8-18.5-24.4-18.2-.2,0-.4,0-.6,0-1.1,0-2.3.1-3.5.4-5.9,1.1-11.2,4.4-15,9.1l-1.3,1.7c-.6.7-1.2,1.4-1.8,2.1l-18.5,23.2c-.7.8-1.9,1-2.8.3-.9-.7-1-2-.3-2.9l5.7-6.6c1.2-1.3.7-3.4-1-4.1-3.1-1.3-6.6-2-10.3-1.7-11.3.7-20.6,9.9-21.4,21.2-.9,13.3,9.6,24.4,22.8,24.4s0,0,0,0c5.7,0,11-2.5,14.7-6.8l15.5-17.9c.6-.7,1.7-1,2.6-.5,1.1.7,1.3,2.1.5,3l-7.5,8.7c-.5.5-.9,1.1-1.3,1.7,0,.1-.2.3-.3.4-3.1,4.1-5,9.1-5.1,14.3,0,1.3,0,2.5.2,3.6.2,1,.4,2,.7,3,3.2,10.3,13.8,18.5,24.4,18.2.2,0,.4,0,.6,0,1.1,0,2.3-.1,3.5-.4,5.9-1.1,11.2-4.4,15-9.1l.8-1h0c0,0,1.1-1.3,1.1-1.3.4-.5.8-.9,1.2-1.4l8.9-11.1,7.6-9.6c.7-.6,1.8-.6,2.5,0,.9.7,1,2,.3,2.9l-5.7,6.6c-1,1.1-.8,2.8.3,3.7.2.2.4.3.7.4,3.1,1.3,6.6,2,10.3,1.7,11.3-.7,20.6-9.9,21.4-21.2,0-.1,0-.3,0-.4,0,0,0,0,0-.1,0-.3,0-.6,0-.9,0-.2,0-.5,0-.7Z"/></symbol></svg>
+<div class="cloud-layer" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap">
@@ -432,15 +429,6 @@
 
 <main id="top">
   <section class="hero">
-    <div class="clouds" aria-hidden="true">
-      <div class="cloud lime" style="left:-7%; top:16%; --r:12deg; animation-delay:.3s; --w:460px; --t:15s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud purple" style="right:-4%; top:58%; --r:-15deg; animation-delay:.5s; --w:380px; --t:13s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud purple" style="left:6%; bottom:6%; --r:-8deg; animation-delay:.4s; --w:240px; --t:16s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud lime" style="right:16%; top:6%; --r:20deg; animation-delay:.6s; --w:180px; --t:12s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud lime" style="left:34%; top:4%; --r:-22deg; animation-delay:.7s; --w:120px; --t:14s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud paper" style="left:46%; top:62%; --r:35deg; animation-delay:.9s; --w:150px; --t:17s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud purple" style="left:20%; top:42%; --r:50deg; animation-delay:1.1s; --w:90px; --t:12s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-    </div>
     <div class="wrap">
       <div class="hero-grid">
         <div>
@@ -580,11 +568,6 @@
   </div>
 
   <section class="contact" id="kontakt" aria-labelledby="h-kontakt">
-    <div class="clouds" aria-hidden="true">
-      <div class="cloud lime" style="right:-5%; top:-10%; --r:-20deg; animation-delay:.2s; --w:300px; --t:15s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud purple" style="left:-4%; bottom:-8%; --r:14deg; animation-delay:.4s; --w:260px; --t:13s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-      <div class="cloud paper" style="left:52%; top:58%; --r:28deg; animation-delay:.6s; --w:110px; --t:16s"><svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg></div>
-    </div>
     <div class="wrap">
       <h2 id="h-kontakt">Zní to, jako by vaše značka potřebovala botox?</h2>
       <div class="contact-side">
@@ -622,6 +605,90 @@
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(frame);
     else window.addEventListener('resize', fit);
+  })();
+  (function () {
+    var layer = document.querySelector('.cloud-layer');
+    if (!layer) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var small = window.innerWidth < 760;
+    var k = small ? .55 : 1;
+    var defs = [
+      ['lime', 260], ['purple', 220], ['lime', 150], ['paper', 120], ['purple', 170],
+      ['lime', 90], ['purple', 110], ['paper', 80], ['lime', 200], ['purple', 70],
+      ['lime', 120], ['paper', 140]
+    ];
+    if (small) defs = defs.slice(0, 8);
+    var W = window.innerWidth, H = window.innerHeight;
+    var clouds = defs.map(function (d) {
+      var el = document.createElement('div');
+      el.className = 'fc ' + d[0];
+      var s = d[1] * k;
+      el.style.width = s + 'px';
+      el.innerHTML = '<svg viewBox="0 0 325.4 284.5"><use href="#lk-mark"/></svg>';
+      layer.appendChild(el);
+      var bvx = (Math.random() - .5) * .5, bvy = (Math.random() - .5) * .4;
+      return { el: el, s: s, h: s * .875, x: Math.random() * (W - s), y: Math.random() * (H - s * .875),
+               vx: bvx, vy: bvy, bvx: bvx, bvy: bvy, r: Math.random() * 360, vr: (Math.random() - .5) * .15, bvr: (Math.random() - .5) * .15 };
+    });
+    function draw(c) { c.el.style.transform = 'translate3d(' + c.x + 'px,' + c.y + 'px,0) rotate(' + c.r + 'deg)'; }
+    clouds.forEach(draw);
+    requestAnimationFrame(function () { layer.classList.add('ready'); });
+    if (reduce) return;
+
+    var mx = -9999, my = -9999, pmx = 0, pmy = 0, grabbed = null, ox = 0, oy = 0, gvx = 0, gvy = 0;
+    var root = document.documentElement;
+    function interactive(t) { return t && t.closest && t.closest('a, button, input, textarea, select, iframe, label'); }
+    function hit(x, y) {
+      for (var i = clouds.length - 1; i >= 0; i--) {
+        var c = clouds[i], cx = c.x + c.s / 2, cy = c.y + c.h / 2;
+        if (Math.hypot(x - cx, y - cy) < c.s * .42) return c;
+      }
+      return null;
+    }
+    window.addEventListener('pointermove', function (e) {
+      pmx = mx; pmy = my; mx = e.clientX; my = e.clientY;
+      if (grabbed) { gvx = mx - pmx; gvy = my - pmy; return; }
+      if (e.pointerType === 'mouse') root.classList.toggle('cloud-hover', !!hit(mx, my) && !interactive(e.target));
+    }, { passive: true });
+    window.addEventListener('pointerleave', function () { mx = my = -9999; });
+    document.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0 || interactive(e.target)) return;
+      var c = hit(e.clientX, e.clientY);
+      if (!c) return;
+      e.preventDefault();
+      grabbed = c; ox = e.clientX - c.x; oy = e.clientY - c.y; gvx = gvy = 0;
+      root.classList.add('cloud-grab');
+    });
+    window.addEventListener('pointerup', function () {
+      if (!grabbed) return;
+      grabbed.vx = gvx * .9; grabbed.vy = gvy * .9; grabbed.vr = (gvx - gvy) * .4;
+      grabbed = null;
+      root.classList.remove('cloud-grab');
+    });
+    window.addEventListener('resize', function () { W = window.innerWidth; H = window.innerHeight; });
+
+    function tick() {
+      for (var i = 0; i < clouds.length; i++) {
+        var c = clouds[i];
+        if (c === grabbed) {
+          c.x = mx - ox; c.y = my - oy; c.r += c.vr * .2;
+        } else {
+          var cx = c.x + c.s / 2, cy = c.y + c.h / 2, dx = cx - mx, dy = cy - my, d = Math.hypot(dx, dy) || 1;
+          var R = 140 + c.s * .4;
+          if (d < R) {
+            var f = (1 - d / R) * 1.1;
+            c.vx += dx / d * f; c.vy += dy / d * f; c.vr += (dx > 0 ? 1 : -1) * f * .35;
+          }
+          c.vx += (c.bvx - c.vx) * .015; c.vy += (c.bvy - c.vy) * .015; c.vr += (c.bvr - c.vr) * .02;
+          c.x += c.vx; c.y += c.vy; c.r += c.vr;
+          if (c.x > W + 20) c.x = -c.s - 10; else if (c.x < -c.s - 20) c.x = W + 10;
+          if (c.y > H + 20) c.y = -c.h - 10; else if (c.y < -c.h - 20) c.y = H + 10;
+        }
+        draw(c);
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   })();
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
