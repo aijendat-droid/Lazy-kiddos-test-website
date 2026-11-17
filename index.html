@@ -82,7 +82,19 @@
     transition: background-size .35s var(--ease);
   }
   .nav-links a:hover { background-size: 100% 2px; }
-  .nav .btn { justify-self: end; padding: .75em 1.2em; font-size: .9rem; }
+  .nav-right { justify-self: end; display: flex; align-items: center; gap: var(--s2); }
+  .nav .btn { padding: .75em 1.2em; font-size: .9rem; }
+  .lang { display: flex; border: 1.5px solid rgba(252,255,126,.55); border-radius: 999px; padding: 3px; }
+  .lang button {
+    all: unset; cursor: pointer;
+    font: 600 .8rem/1 var(--body); color: var(--lime);
+    padding: .5em .75em; border-radius: 999px;
+    transition: transform .3s var(--spring), background-color .2s, color .2s;
+  }
+  .lang button:hover { transform: translateY(-1px); }
+  .lang button:active { transform: scale(.94); }
+  .lang button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  .lang button[aria-pressed="true"] { background: var(--lime); color: var(--purple); }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -414,6 +426,13 @@
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s3); align-items: center; }
   footer img { height: 30px; width: auto; }
   footer p { opacity: .7; }
+  .social { display: flex; gap: var(--s3); }
+  .social a {
+    color: var(--lime); text-decoration: none; font-weight: 600;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+    padding-bottom: 2px; transition: background-size .35s var(--ease);
+  }
+  .social a:hover { background-size: 100% 2px; }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 980px) {
@@ -451,12 +470,18 @@
     </a>
     <nav aria-label="Hlavní navigace">
       <ul class="nav-links">
-        <li><a href="#sluzby">co děláme</a></li>
-        <li><a href="#prace">práce</a></li>
-        <li><a href="#o-nas">o nás</a></li>
+        <li><a href="#sluzby" data-en="what we do">co děláme</a></li>
+        <li><a href="#prace" data-en="work">práce</a></li>
+        <li><a href="#o-nas" data-en="about">o nás</a></li>
       </ul>
     </nav>
-    <a class="btn btn-lime" href="#kontakt">Napište nám</a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Jazyk / Language">
+        <button type="button" data-lang="cs" aria-pressed="true">CS</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-lime" href="#kontakt" data-en="Get in touch">Napište nám</a>
+    </div>
   </div>
 </header>
 
@@ -465,25 +490,25 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <h1>Gen Z konzultační agentura</h1>
-          <p class="hero-sub">Botox pro vaši značku.</p>
-          <p class="hero-lead">Průměrný CMO má 38 let a Generace Z mu proto často zůstává záhadou. My Gen Z jsme, takže víme, co na ni funguje, a nemusíme hádat.</p>
+          <h1 data-en="Gen Z consultancy">Gen Z konzultační agentura</h1>
+          <p class="hero-sub" data-en="Botox for your brand.">Botox pro vaši značku.</p>
+          <p class="hero-lead" data-en="The average CMO is 38, so Gen Z often stays a mystery to them. We are Gen Z, so we know what works and we don&#x27;t have to guess.">Průměrný CMO má 38 let a Generace Z mu proto často zůstává záhadou. My Gen Z jsme, takže víme, co na ni funguje, a nemusíme hádat.</p>
           <div class="hero-actions">
-            <a class="btn btn-lime" href="#kontakt">Napište nám</a>
-            <a class="btn btn-ghost" href="#prace">Naše práce</a>
+            <a class="btn btn-lime" href="#kontakt" data-en="Get in touch">Napište nám</a>
+            <a class="btn btn-ghost" href="#prace" data-en="Our work">Naše práce</a>
           </div>
         </div>
 
-        <button class="box-stage" type="button" aria-expanded="false" aria-label="Otevřít krabičku a ukázat, co děláme">
+        <button class="box-stage" type="button" aria-expanded="false" aria-label="Otevřít krabičku a ukázat, co děláme" data-en-label="Open the box to see what we do">
           <span class="box">
             <span class="ground" aria-hidden="true"></span>
             <span class="flap" aria-hidden="true"></span>
             <span class="top" aria-hidden="true"></span>
             <span class="goodies" aria-hidden="true">
-              <span class="goodie" style="--bg: var(--lime); --fg: var(--ink); --x: -120px; --y: -150px; --r: -10deg">Focus groupy</span>
-              <span class="goodie" style="--bg: var(--paper); --fg: var(--purple); --x: -10px; --y: -225px; --r: 4deg">Koncepty</span>
-              <span class="goodie" style="--bg: var(--ink); --fg: var(--lime); --x: 115px; --y: -170px; --r: 9deg">Brainstormingy</span>
-              <span class="goodie" style="--bg: #fff; --fg: var(--ink); --x: 5px; --y: -120px; --r: -4deg">Kampaně</span>
+              <span class="goodie" style="--bg: var(--lime); --fg: var(--ink); --x: -120px; --y: -150px; --r: -10deg" data-en="Focus groups">Focus groupy</span>
+              <span class="goodie" style="--bg: var(--paper); --fg: var(--purple); --x: -10px; --y: -225px; --r: 4deg" data-en="Concepts">Koncepty</span>
+              <span class="goodie" style="--bg: var(--ink); --fg: var(--lime); --x: 115px; --y: -170px; --r: 9deg" data-en="Brainstorms">Brainstormingy</span>
+              <span class="goodie" style="--bg: #fff; --fg: var(--ink); --x: 5px; --y: -120px; --r: -4deg" data-en="Campaigns">Kampaně</span>
             </span>
             <span class="side" aria-hidden="true"></span>
             <span class="front" aria-hidden="true">
@@ -492,7 +517,7 @@
                 <img src="brand_assets/LK_logotyp_dark_crop.png" alt="">
                 <svg viewBox="0 0 325.4 284.5"><path fill="#8719f4" d="M230.6,147.6c0-.1,0-.2,0-.3,0-.6,0-1.1-.1-1.7-1.1-10.5-9.6-18.9-20.1-20.1-2.6-.3-5.1-.1-7.4.4-4.1.9-7.8,3.2-10.5,6.5,0,0,0,0,0,0l-10.9,12.7c-.7.8-1.9,1-2.8.4-.9-.7-1-2-.3-2.9l4.3-5,1.5-1.6c.5-.6,1.1-1.2,1.5-1.9,3.1-4.1,5-9.1,5.1-14.3,0-1.3,0-2.5-.2-3.6-.2-1-.4-2-.7-3-3.2-10.3-13.8-18.5-24.4-18.2-.2,0-.4,0-.6,0-1.1,0-2.3.1-3.5.4-5.9,1.1-11.2,4.4-15,9.1l-1.3,1.7c-.6.7-1.2,1.4-1.8,2.1l-18.5,23.2c-.7.8-1.9,1-2.8.3-.9-.7-1-2-.3-2.9l5.7-6.6c1.2-1.3.7-3.4-1-4.1-3.1-1.3-6.6-2-10.3-1.7-11.3.7-20.6,9.9-21.4,21.2-.9,13.3,9.6,24.4,22.8,24.4s0,0,0,0c5.7,0,11-2.5,14.7-6.8l15.5-17.9c.6-.7,1.7-1,2.6-.5,1.1.7,1.3,2.1.5,3l-7.5,8.7c-.5.5-.9,1.1-1.3,1.7,0,.1-.2.3-.3.4-3.1,4.1-5,9.1-5.1,14.3,0,1.3,0,2.5.2,3.6.2,1,.4,2,.7,3,3.2,10.3,13.8,18.5,24.4,18.2.2,0,.4,0,.6,0,1.1,0,2.3-.1,3.5-.4,5.9-1.1,11.2-4.4,15-9.1l.8-1h0c0,0,1.1-1.3,1.1-1.3.4-.5.8-.9,1.2-1.4l8.9-11.1,7.6-9.6c.7-.6,1.8-.6,2.5,0,.9.7,1,2,.3,2.9l-5.7,6.6c-1,1.1-.8,2.8.3,3.7.2.2.4.3.7.4,3.1,1.3,6.6,2,10.3,1.7,11.3-.7,20.6-9.9,21.4-21.2,0-.1,0-.3,0-.4,0,0,0,0,0-.1,0-.3,0-.6,0-.9,0-.2,0-.5,0-.7Z"/></svg>
               </span>
-              <span class="front-info"><span>Obsah: 3 lazy kiddos</span><b>Pro CMO 38+</b></span>
+              <span class="front-info"><span data-en="Contents: 3 lazy kiddos">Obsah: 3 lazy kiddos</span><b data-en="For CMOs 38+">Pro CMO 38+</b></span>
             </span>
           </span>
           <span class="box-note"><span class="box-hint">klikněte, něco v ní je</span><svg viewBox="0 0 54 40" aria-hidden="true"><path d="M4 36 C 14 34, 30 30, 40 8"/><path d="M33 12 L40 7 L43 15"/></svg></span>
@@ -506,29 +531,29 @@
     <section class="sec" id="sluzby" aria-labelledby="h-sluzby">
       <div class="wrap">
         <div class="sec-head">
-          <h2 id="h-sluzby">co děláme</h2>
-          <p class="hand">čtyři věci, které umíme fakt dobře</p>
+          <h2 id="h-sluzby" data-en="what we do">co děláme</h2>
+          <p class="hand" data-en="four things we&#x27;re really good at">čtyři věci, které umíme fakt dobře</p>
         </div>
         <ul class="services">
           <li class="service">
             <svg class="doodle" viewBox="0 0 32 32" aria-hidden="true"><path fill="#fcff7e" d="M16 2.5 L19.6 12.2 L30 12.6 L21.6 18.8 L24.8 29.2 L16.2 23 L7.4 29.4 L10.6 18.9 L2.2 12.4 L12.6 12 Z"/></svg>
-            <h3>Focus groupy</h3>
-            <p>Seženeme mladé lidi, posadíme je ke stolu a necháme je mluvit o vaší značce. Bez filtru. Pak to přeložíme do závěrů, se kterými se dá pracovat. Když je téma citlivější, uděláme rozhovory jeden na jednoho.</p>
+            <h3 data-en="Focus groups">Focus groupy</h3>
+            <p data-en="We find young people, sit them down at a table and let them talk about your brand. No filter. Then we turn it into findings you can actually work with. If the topic is more sensitive, we do one-on-one interviews.">Seženeme mladé lidi, posadíme je ke stolu a necháme je mluvit o vaší značce. Bez filtru. Pak to přeložíme do závěrů, se kterými se dá pracovat. Když je téma citlivější, uděláme rozhovory jeden na jednoho.</p>
           </li>
           <li class="service">
             <svg class="doodle" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" style="stroke:#8719f4" d="M2 18 C5 7, 9 27, 13 16 S20 5, 23 15 S28 25, 31 12"/></svg>
-            <h3>Koncepty</h3>
-            <p>Nápady, aktivace a spolupráce, které sednou vaší značce a za které se mladí nebudou stydět dát story.</p>
+            <h3 data-en="Concepts">Koncepty</h3>
+            <p data-en="Ideas, activations and collaborations that fit your brand and that young people won&#x27;t be embarrassed to post in their stories.">Nápady, aktivace a spolupráce, které sednou vaší značce a za které se mladí nebudou stydět dát story.</p>
           </li>
           <li class="service">
             <svg class="doodle" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" d="M18 4 C9 2.5 3 9.5 4 18 C5 26 13.5 30.5 21.5 27.5 C29 24.5 31 14 26 8.5 C22 4 13 4.5 8.5 9.5"/></svg>
-            <h3>Brainstormingy</h3>
-            <p>Vaše zadání, místnost plná mladých lidí z marketingu a pár hodin času. Odnesete si hromadu nápadů z první ruky.</p>
+            <h3 data-en="Brainstorms">Brainstormingy</h3>
+            <p data-en="Your brief, a room full of young marketing people and a few hours. You walk away with a pile of first-hand ideas.">Vaše zadání, místnost plná mladých lidí z marketingu a pár hodin času. Odnesete si hromadu nápadů z první ruky.</p>
           </li>
           <li class="service">
             <svg class="doodle" viewBox="0 0 32 32" aria-hidden="true"><path fill="#2a2a29" d="M19 2 L7.5 18.5 L15.5 18.2 L11.5 30.5 L25.5 12.8 L17.6 13 Z"/></svg>
-            <h3>Kampaně</h3>
-            <p>Full service agentura nejsme a ani být nechceme. Pomůžeme ale kampaň dotáhnout tak, aby ji mladí neodscrollovali.</p>
+            <h3 data-en="Campaigns">Kampaně</h3>
+            <p data-en="We&#x27;re not a full-service agency and we don&#x27;t want to be. But we&#x27;ll help you finish your campaign so young people don&#x27;t scroll past it.">Full service agentura nejsme a ani být nechceme. Pomůžeme ale kampaň dotáhnout tak, aby ji mladí neodscrollovali.</p>
           </li>
         </ul>
       </div>
@@ -537,37 +562,37 @@
     <section class="sec" id="prace" aria-labelledby="h-prace">
       <div class="wrap">
         <div class="sec-head">
-          <h2 id="h-prace">práce</h2>
-          <p class="hand">pár věcí, na které jsme pyšní</p>
+          <h2 id="h-prace" data-en="work">práce</h2>
+          <p class="hand" data-en="a few things we&#x27;re proud of">pár věcí, na které jsme pyšní</p>
         </div>
         <ul>
           <li class="case">
             <div>
               <h3>Portu</h3>
-              <ul class="tags"><li>Koncept</li><li>Kampaň</li><li>Realizace</li></ul>
+              <ul class="tags"><li data-en="Concept">Koncept</li><li data-en="Campaign">Kampaň</li><li data-en="Execution">Realizace</li></ul>
             </div>
-            <p>Dlouhodobý koncept pro Gen Z o tom, jak si ulevit od stresu. Nejdřív jsme kampaň rozjeli s influencery, v září jsme ji rozšířili o další partnerství a dotáhli do života.</p>
+            <p data-en="A long-term Gen Z concept about taking the edge off stress. We first launched the campaign with influencers, then in September extended it with another partnership and brought it to life.">Dlouhodobý koncept pro Gen Z o tom, jak si ulevit od stresu. Nejdřív jsme kampaň rozjeli s influencery, v září jsme ji rozšířili o další partnerství a dotáhli do života.</p>
           </li>
           <li class="case">
             <div>
               <h3>Air Bank</h3>
               <ul class="tags"><li>Brainstorming</li></ul>
             </div>
-            <p>Balík nápadů, jak oslovit Gen Z: insighty a co-brandové spolupráce pro taktickou kampaň s Gen Z influencery. Dělali jsme to přes kreativní agenturu EverWhere.</p>
+            <p data-en="A package of ideas for reaching Gen Z: insights and co-brand collaborations for a tactical campaign with Gen Z influencers. Delivered via the creative agency EverWhere.">Balík nápadů, jak oslovit Gen Z: insighty a co-brandové spolupráce pro taktickou kampaň s Gen Z influencery. Dělali jsme to přes kreativní agenturu EverWhere.</p>
           </li>
           <li class="case">
             <div>
               <h3>Plzeňský Prazdroj</h3>
               <ul class="tags"><li>Focus group</li></ul>
             </div>
-            <p>Vzali jsme studenty na pivo a bavili se o tom, co, kdy a proč pijou. Pak jsme to otočili v kreativní sezení a hledali, jak mluvit o stávajících i chystaných produktech.</p>
+            <p data-en="We took students out for a beer and talked about what they drink, when and why. Then we turned it into a creative session on how to talk about existing and upcoming products.">Vzali jsme studenty na pivo a bavili se o tom, co, kdy a proč pijou. Pak jsme to otočili v kreativní sezení a hledali, jak mluvit o stávajících i chystaných produktech.</p>
           </li>
           <li class="case">
             <div>
               <h3>DrWitt</h3>
               <ul class="tags"><li>Focus group</li></ul>
             </div>
-            <p>Osm mladých lidí, jeden stůl a témata jako zdraví, sport, funkční nápoje a dosavadní komunikace značky. Výstup pomohl nastartovat plánování komunikace na další období.</p>
+            <p data-en="Eight young people, one table, and topics like health, sport, functional drinks and the brand&#x27;s communication so far. The output helped kick off communication planning for the next period.">Osm mladých lidí, jeden stůl a témata jako zdraví, sport, funkční nápoje a dosavadní komunikace značky. Výstup pomohl nastartovat plánování komunikace na další období.</p>
           </li>
         </ul>
       </div>
@@ -577,34 +602,34 @@
       <div class="wrap">
         <div class="sec-head">
           <h2 id="h-ig">instagram</h2>
-          <p class="hand">co zrovna řešíme</p>
+          <p class="hand" data-en="what we&#x27;re up to">co zrovna řešíme</p>
         </div>
         <div class="ig-frame">
           <div class="ig-scale">
-            <iframe src="https://www.instagram.com/lazykiddos_/embed/" title="Poslední příspěvky lazy kiddos na Instagramu" loading="lazy" scrolling="no"></iframe>
+            <iframe src="https://www.instagram.com/lazykiddos_/embed/" title="Poslední příspěvky lazy kiddos na Instagramu" data-en-title="Latest lazy kiddos posts on Instagram" loading="lazy" scrolling="no"></iframe>
           </div>
         </div>
         <div class="ig-foot">
-          <p>Krátká videa o tom, co Gen Z zrovna baví, štve a co by značky měly vědět.</p>
-          <a class="btn btn-ink" href="https://www.instagram.com/lazykiddos_/" target="_blank" rel="noopener">Sledovat @lazykiddos_</a>
+          <p data-en="Short videos about what Gen Z is into, what annoys them and what brands should know.">Krátká videa o tom, co Gen Z zrovna baví, štve a co by značky měly vědět.</p>
+          <a class="btn btn-ink" href="https://www.instagram.com/lazykiddos_/" target="_blank" rel="noopener" data-en="Follow @lazykiddos_">Sledovat @lazykiddos_</a>
         </div>
       </div>
     </section>
 
     <div class="wrap">
       <section class="about" id="o-nas" aria-labelledby="h-onas">
-        <p class="hand about-note">a jo, fakt jsme Gen Z</p>
-        <h2 id="h-onas">jsme 3 lazy kiddos.</h2>
-        <p>Pomáháme značkám s Gen Z, pracujeme v agenturách, studujeme na FSV Univerzity Karlovy, žijeme sociálním životem, sportujeme, cestujeme, vaříme a jíme, chodíme do přírody, scrollujeme a máme rádi kulturu a umění.</p>
+        <p class="hand about-note" data-en="and yes, we really are Gen Z">a jo, fakt jsme Gen Z</p>
+        <h2 id="h-onas" data-en="we are 3 lazy kiddos.">jsme 3 lazy kiddos.</h2>
+        <p data-en="We help brands with Gen Z, work at agencies, study at the Faculty of Social Sciences at Charles University, have a social life, do sports, travel, cook and eat, go out into nature, scroll, and love culture and art.">Pomáháme značkám s Gen Z, pracujeme v agenturách, studujeme na FSV Univerzity Karlovy, žijeme sociálním životem, sportujeme, cestujeme, vaříme a jíme, chodíme do přírody, scrollujeme a máme rádi kulturu a umění.</p>
       </section>
     </div>
   </div>
 
   <section class="contact" id="kontakt" aria-labelledby="h-kontakt">
     <div class="wrap">
-      <h2 id="h-kontakt">Zní to, jako by vaše značka potřebovala botox?</h2>
+      <h2 id="h-kontakt" data-en="Sounds like your brand needs a botox?">Zní to, jako by vaše značka potřebovala botox?</h2>
       <div class="contact-side">
-        <p>Tak nám napište. Stačí pár vět o tom, co řešíte, a zbytek doladíme u kafe.</p>
+        <p data-en="Then drop us a line. A few sentences about what you&#x27;re dealing with is enough, and we&#x27;ll sort out the rest over coffee.">Tak nám napište. Stačí pár vět o tom, co řešíte, a zbytek doladíme u kafe.</p>
         <a class="mail" href="mailto:jakub@lazykiddos.com">jakub@lazykiddos.com</a>
       </div>
     </div>
@@ -614,6 +639,10 @@
 <footer>
   <div class="wrap">
     <img src="brand_assets/LK_logotyp_lime_crop.png" alt="lazy kiddos">
+    <ul class="social">
+      <li><a href="https://www.instagram.com/lazykiddos_/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/company/lazy-kiddos" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
     <p>© <span id="year">2026</span> lazy kiddos</p>
   </div>
 </footer>
@@ -625,7 +654,9 @@
     function set(open) {
       stage.classList.toggle('open', open);
       stage.setAttribute('aria-expanded', String(open));
-      hint.textContent = open ? 'a zase zavřít' : 'klikněte, něco v ní je';
+      var en = document.documentElement.lang === 'en';
+      hint.textContent = open ? (en ? 'and close it again' : 'a zase zavřít') : (en ? 'click, there is something inside' : 'klikněte, něco v ní je');
+      stage.dataset.open = open ? '1' : '';
     }
     stage.addEventListener('click', function () { set(!stage.classList.contains('open')); });
     setTimeout(function () { set(true); }, 1500);
@@ -723,6 +754,35 @@
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+  })();
+  (function () {
+    var titles = { cs: 'lazy kiddos | Gen Z konzultační agentura', en: 'lazy kiddos | Gen Z consultancy' };
+    var texts = document.querySelectorAll('[data-en]');
+    texts.forEach(function (el) { el.dataset.cs = el.innerHTML; });
+    var labelled = document.querySelectorAll('[data-en-label]');
+    labelled.forEach(function (el) { el.dataset.csLabel = el.getAttribute('aria-label'); });
+    var titled = document.querySelectorAll('[data-en-title]');
+    titled.forEach(function (el) { el.dataset.csTitle = el.getAttribute('title'); });
+    var buttons = document.querySelectorAll('.lang button');
+    function apply(lang) {
+      var en = lang === 'en';
+      document.documentElement.lang = en ? 'en' : 'cs';
+      document.title = titles[en ? 'en' : 'cs'];
+      texts.forEach(function (el) { el.innerHTML = en ? el.dataset.en : el.dataset.cs; });
+      labelled.forEach(function (el) { el.setAttribute('aria-label', en ? el.dataset.enLabel : el.dataset.csLabel); });
+      titled.forEach(function (el) { el.setAttribute('title', en ? el.dataset.enTitle : el.dataset.csTitle); });
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+      var stage = document.querySelector('.box-stage'), hint = stage && stage.querySelector('.box-hint');
+      if (hint) {
+        var open = stage.classList.contains('open');
+        hint.textContent = open ? (en ? 'and close it again' : 'a zase zavřít') : (en ? 'click, there is something inside' : 'klikněte, něco v ní je');
+      }
+      try { localStorage.setItem('lk-lang', lang); } catch (e) {}
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.lang); }); });
+    var saved = null;
+    try { saved = localStorage.getItem('lk-lang'); } catch (e) {}
+    if (saved === 'en') apply('en');
   })();
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
