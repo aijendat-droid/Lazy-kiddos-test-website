@@ -736,16 +736,16 @@
       <aside class="brand-test" aria-labelledby="h-test">
         <h3 id="h-test" data-en="Quick test: does your brand need botox?">Rychlý test: potřebuje vaše značka botox?</h3>
         <ul class="symptoms">
-            <li class="symptom"><label><input type="checkbox" value="0"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Young people scroll past your posts">Mladí vaše posty scrollují dál</span></label></li>
-            <li class="symptom"><label><input type="checkbox" value="1"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Your last TikTok was in 2021">Na TikToku jste naposledy v roce 2021</span></label></li>
-            <li class="symptom"><label><input type="checkbox" value="2"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Your last meme got 3 likes (from colleagues)">Váš poslední meme měl 3 lajky (od kolegů)</span></label></li>
-            <li class="symptom"><label><input type="checkbox" value="3"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="The word “slay” means nothing to you">Slovo „slay“ vám nic neříká</span></label></li>
+            <li class="symptom"><label><input type="checkbox" value="0"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Your customers are getting older along with you">Vaši zákazníci stárnou spolu s vámi</span></label></li>
+            <li class="symptom"><label><input type="checkbox" value="1"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Most of what you know about Gen Z comes from slide decks">O Gen Z víte hlavně z prezentací</span></label></li>
+            <li class="symptom"><label><input type="checkbox" value="2"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Your tagline sounds like 2010 when you say it out loud">Váš claim zní nahlas jako z roku 2010</span></label></li>
+            <li class="symptom"><label><input type="checkbox" value="3"><span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4" fill="none" stroke="#2a2a29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Young people know you, but nobody loves you">Mladí vás znají, ale nikdo vás nemiluje</span></label></li>
         </ul>
         <div class="test-result">
           <p class="test-msg" aria-live="polite">zaškrtněte, co na vás sedí</p>
           <a class="btn btn-ink test-btn" href="mailto:jakub@lazykiddos.com" data-en="Email Jakub">Napsat Jakubovi</a>
         </div>
-        <div class="stamp" aria-hidden="true">Diagnóza:<br>potřebuje botox</div>
+        <div class="stamp" aria-hidden="true">Diagnóza:<br>vaše značka<br>potřebuje botox</div>
       </aside>
     </div>
   </section>
@@ -947,9 +947,9 @@
     var msg = test.querySelector('.test-msg'), btn = test.querySelector('.test-btn'), stamp = test.querySelector('.stamp');
     var T = {
       cs: { m: ['zaškrtněte, co na vás sedí', 'hmm, malá dávka by neuškodila', 'hmm, malá dávka by neuškodila', 'tohle chce botox, a rychle', 'tohle chce botox, a rychle'],
-            stamp: 'Diagnóza:<br>potřebuje botox', subj: 'Potřebujeme botox', intro: 'Ahoj Jakube, udělali jsme váš test a tohle na nás sedí:' },
+            stamp: 'Diagnóza:<br>vaše značka<br>potřebuje botox', subj: 'Potřebujeme botox', intro: 'Ahoj Jakube, udělali jsme váš test a tohle na nás sedí:' },
       en: { m: ['tick whatever fits', 'hmm, a small dose wouldn\'t hurt', 'hmm, a small dose wouldn\'t hurt', 'this needs botox, and fast', 'this needs botox, and fast'],
-            stamp: 'Diagnosis:<br>needs botox', subj: 'We need botox', intro: 'Hi Jakub, we took your test and this is us:' }
+            stamp: 'Diagnosis:<br>your brand<br>needs botox', subj: 'We need botox', intro: 'Hi Jakub, we took your test and this is us:' }
     };
     function render() {
       var L = T[document.documentElement.lang === 'en' ? 'en' : 'cs'];
