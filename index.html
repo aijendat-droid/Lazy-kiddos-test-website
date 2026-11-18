@@ -479,19 +479,30 @@
 
 
   /* Instagram */
-  .ig-frame {
-    position: relative; z-index: 6;
-    aspect-ratio: 985 / 328;
-    background: var(--ink);
-    border: 2px solid var(--ink);
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 10px 10px 0 var(--lime);
-    transform: rotate(-.5deg);
-    margin-top: var(--s4);
+  .ig-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); margin-top: var(--s4); }
+  .ig-card {
+    display: block; text-decoration: none; color: var(--ink);
+    background: #fff; border: 2px solid var(--ink); border-radius: 22px; overflow: hidden;
+    box-shadow: 8px 8px 0 var(--lime);
+    transition: transform .45s var(--spring), box-shadow .3s;
   }
-  .ig-scale { position: absolute; left: 0; top: 0; width: 985px; height: 328px; overflow: hidden; transform-origin: 0 0; }
-  .ig-scale iframe { position: absolute; left: 0; top: -158px; width: 985px; height: 520px; border: 0; }
+  .ig-cards li:nth-child(1) .ig-card { transform: rotate(-1.2deg); }
+  .ig-cards li:nth-child(2) .ig-card { transform: rotate(.8deg); }
+  .ig-cards li:nth-child(3) .ig-card { transform: rotate(-.6deg); }
+  .ig-cards .ig-card:hover { transform: rotate(0) translateY(-6px); box-shadow: 10px 12px 0 var(--purple); }
+  .ig-card:active { transform: scale(.98); }
+  .ig-card:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
+  .ig-thumb { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; border-bottom: 2px solid var(--ink); }
+  .ig-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform .6s var(--ease); }
+  .ig-card:hover .ig-thumb img { transform: scale(1.04); }
+  .ig-play {
+    position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px;
+    border-radius: 50%; background: var(--lime); border: 2px solid var(--ink);
+    display: grid; place-items: center; transition: transform .4s var(--spring);
+  }
+  .ig-play svg { width: 26px; height: 26px; margin-left: 3px; }
+  .ig-card:hover .ig-play { transform: scale(1.12); }
+  .ig-cap { display: block; padding: 1rem 1.2rem 1.15rem; font: 700 1.1rem/1.2 var(--display); letter-spacing: -0.02em; }
   .ig-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s2) var(--s4); margin-top: var(--s4); }
   .ig-foot p { color: var(--ink-soft); max-width: 48ch; }
   .btn-ink { background: var(--ink); color: var(--lime); }
@@ -611,6 +622,13 @@
     .nav-logo img { height: 34px; }
     .nav .btn { padding: .7em 1em; font-size: .85rem; }
     .services { grid-template-columns: 1fr; }
+    .ig-cards {
+      display: flex; gap: var(--s3); overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-inline: calc(-1 * var(--gutter)); padding: .5rem var(--gutter) 1.5rem;
+      scrollbar-width: none;
+    }
+    .ig-cards::-webkit-scrollbar { display: none; }
+    .ig-cards li { flex: 0 0 72%; scroll-snap-align: center; }
     .box-stage { --k: .66; --kx: .66; padding-top: 170px; }
     .box { --D: 26px; }
     .goodie { font-size: .85rem; }
@@ -805,11 +823,20 @@
           <h2 id="h-ig" data-en="what we&#x27;re up to">co zrovna řešíme</h2>
           <p class="hand" data-en="on Instagram @lazykiddos_">na Instagramu @lazykiddos_</p>
         </div>
-        <div class="ig-frame">
-          <div class="ig-scale">
-            <iframe src="https://www.instagram.com/lazykiddos_/embed/" title="Poslední příspěvky lazy kiddos na Instagramu" data-en-title="Latest lazy kiddos posts on Instagram" loading="lazy" scrolling="no"></iframe>
-          </div>
-        </div>
+        <ul class="ig-cards">
+          <li><a class="ig-card" href="https://www.instagram.com/p/Dfet2jzINRI/" target="_blank" rel="noopener">
+            <span class="ig-thumb"><img src="/img/ig-1.jpg" alt="" loading="lazy" width="420" height="747"><span class="ig-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#2a2a29"/></svg></span></span>
+            <span class="ig-cap" data-en="Why every other brand is sponsoring run clubs">Proč každá druhá značka sponzoruje run cluby</span>
+          </a></li>
+          <li><a class="ig-card" href="https://www.instagram.com/p/DfAfl87o-Ls/" target="_blank" rel="noopener">
+            <span class="ig-thumb"><img src="/img/ig-2.jpg" alt="" loading="lazy" width="420" height="747"><span class="ig-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#2a2a29"/></svg></span></span>
+            <span class="ig-cap" data-en="Why tech brands switched to hand-made ads">Proč tech značky přešly na ručně dělané reklamy</span>
+          </a></li>
+          <li><a class="ig-card" href="https://www.instagram.com/p/DezzNMrIv6t/" target="_blank" rel="noopener">
+            <span class="ig-thumb"><img src="/img/ig-3.jpg" alt="" loading="lazy" width="420" height="747"><span class="ig-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#2a2a29"/></svg></span></span>
+            <span class="ig-cap" data-en="Why tech alone won&#x27;t build a brand for young people">Proč se na technologiích těžko staví značka pro mladé</span>
+          </a></li>
+        </ul>
         <div class="ig-foot">
           <p data-en="Short videos about what Gen Z is into, what annoys them and what brands should know.">Krátká videa o tom, co Gen Z zrovna baví, štve a co by značky měly vědět.</p>
           <a class="btn btn-ink" href="https://www.instagram.com/lazykiddos_/" target="_blank" rel="noopener" data-en="Follow @lazykiddos_">Sledovat @lazykiddos_</a>
@@ -884,15 +911,6 @@
       setTimeout(function () { set(true); }, 380);
     });
     setTimeout(function () { set(true); }, 1500);
-  })();
-  (function () {
-    var frame = document.querySelector('.ig-frame');
-    if (!frame) return;
-    var inner = frame.querySelector('.ig-scale');
-    function fit() { inner.style.transform = 'scale(' + (frame.clientWidth / 985) + ')'; }
-    fit();
-    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(frame);
-    else window.addEventListener('resize', fit);
   })();
   (function () {
     var layers = document.querySelectorAll('.cloud-layer');
