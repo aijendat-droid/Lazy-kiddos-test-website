@@ -322,7 +322,7 @@
   }
   .box-stage.open .goodie {
     opacity: 1;
-    transform: translate(calc(-50% + var(--x) * var(--k, 1)), calc(var(--y) * var(--k, 1))) rotate(var(--r)) scale(1);
+    transform: translate(calc(-50% + var(--x) * var(--kx, 1.12)), calc(var(--y) * var(--k, 1))) rotate(var(--r)) scale(1);
   }
   .box-stage.open .goodie { animation: goodie-bob 3.2s ease-in-out infinite; }
   .box-stage.open .goodie:nth-child(2) { animation-duration: 3.8s; animation-delay: -.6s; }
@@ -607,7 +607,7 @@
     .nav-logo img { height: 34px; }
     .nav .btn { padding: .7em 1em; font-size: .85rem; }
     .services { grid-template-columns: 1fr; }
-    .box-stage { --k: .66; padding-top: 170px; }
+    .box-stage { --k: .66; --kx: .66; padding-top: 170px; }
     .box { --D: 26px; }
     .goodie { font-size: .85rem; }
     .front-info { font-size: .66rem; }
