@@ -5,7 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>lazy kiddos | Gen Z konzultační agentura</title>
 <meta name="description" content="Lazy Kiddos je konzultační agentura, která značkám pomáhá porozumět Generaci Z. Focus groupy, koncepty, brainstormingy a kampaně od lidí, kteří Gen Z sami jsou.">
-<link rel="icon" type="image/svg+xml" href="brand_assets/LK_symbol_lime_RGB.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#8719f4">
+<link rel="alternate" hreflang="cs" href="https://lazy-kiddos-test-website.vercel.app/">
+<link rel="alternate" hreflang="en" href="https://lazy-kiddos-test-website.vercel.app/en">
+<link rel="alternate" hreflang="x-default" href="https://lazy-kiddos-test-website.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="lazy kiddos">
+<meta property="og:title" content="lazy kiddos | Gen Z konzultační agentura">
+<meta property="og:description" content="Botox pro vaši značku. Focus groupy, koncepty, brainstormingy a kampaně od lidí, kteří Gen Z sami jsou.">
+<meta property="og:url" content="https://lazy-kiddos-test-website.vercel.app/">
+<meta property="og:image" content="https://lazy-kiddos-test-website.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lazy-kiddos-test-website.vercel.app/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Shantell+Sans:wght@500;600&display=swap" rel="stylesheet">
@@ -71,7 +89,47 @@
   .btn-ghost:hover { border-color: var(--lime); }
 
   /* ---------- Nav ---------- */
-  .nav { position: absolute; inset: 0 0 auto; z-index: 10; padding-block: var(--s3); }
+  .nav {
+    position: fixed; inset: 0 0 auto; z-index: 10; padding-block: var(--s3);
+    transition: padding .35s var(--ease), background-color .35s, box-shadow .35s;
+  }
+  .nav.scrolled {
+    padding-block: .55rem;
+    background: rgba(135, 25, 244, .94);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 24px rgba(40, 4, 80, .25);
+  }
+  .nav-logo img { transition: height .35s var(--ease); }
+  .nav.scrolled .nav-logo img { height: 32px; }
+  .menu-btn {
+    all: unset; cursor: pointer; display: none;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1.5px solid rgba(252,255,126,.55);
+    place-items: center;
+    transition: transform .3s var(--spring);
+  }
+  .menu-btn:active { transform: scale(.92); }
+  .menu-btn:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  .menu-btn span, .menu-btn span::before, .menu-btn span::after {
+    display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--lime);
+    position: relative; transition: transform .3s var(--ease), background-color .2s;
+  }
+  .menu-btn span::before, .menu-btn span::after { content: ""; position: absolute; left: 0; }
+  .menu-btn span::before { top: -6px; } .menu-btn span::after { top: 6px; }
+  .menu-btn[aria-expanded="true"] span { background: transparent; }
+  .menu-btn[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 9; background: var(--purple);
+    padding: 6.5rem var(--gutter) var(--s5);
+    display: flex; flex-direction: column; gap: var(--s4);
+    opacity: 0; transform: translateY(-12px); pointer-events: none;
+    transition: opacity .3s, transform .4s var(--ease);
+  }
+  .mobile-menu.open { opacity: 1; transform: none; pointer-events: auto; }
+  .mobile-menu ul { display: grid; gap: var(--s2); }
+  .mobile-menu a { font: 800 2.6rem/1 var(--display); letter-spacing: -0.04em; color: var(--lime); text-decoration: none; }
+  .mobile-menu .lang { align-self: flex-start; }
   .nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
   .nav-logo img { height: 42px; width: auto; }
   .nav-links { display: flex; gap: var(--s4); }
@@ -99,8 +157,8 @@
   /* ---------- Hero ---------- */
   .hero {
     color: var(--lime);
-    min-height: min(100svh, 900px);
-    padding: calc(var(--s6) + var(--s4)) 0 calc(var(--s5) + var(--radius));
+    min-height: min(100svh, 820px);
+    padding: calc(var(--s6) + var(--s2)) 0 calc(var(--s4) + var(--radius));
     display: flex; flex-direction: column; justify-content: center;
     overflow: hidden;
   }
@@ -111,7 +169,7 @@
     gap: var(--s5);
   }
   .hero h1 {
-    font-size: clamp(3rem, 7vw, 6.4rem);
+    font-size: clamp(3rem, 6.4vw, 5.8rem);
     letter-spacing: -0.045em;
     line-height: .92;
   }
@@ -123,7 +181,8 @@
     all: unset; box-sizing: border-box;
     position: relative; display: block;
     width: min(100%, 390px); margin-inline: auto;
-    padding-top: 250px;
+    padding-top: 205px;
+    --k: .85;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
@@ -282,7 +341,7 @@
     margin-top: calc(-1 * var(--radius));
     padding-bottom: calc(var(--s6) + var(--radius));
   }
-  .sec { padding-top: var(--s6); scroll-margin-top: var(--s2); }
+  .sec { padding-top: var(--s6); scroll-margin-top: 3rem; }
   .sec-head {
     display: grid; grid-template-columns: 5fr 7fr; gap: var(--s4);
     align-items: end;
@@ -382,18 +441,29 @@
   .test-msg { font-family: var(--hand); font-weight: 500; color: var(--purple); font-size: 1.1rem; line-height: 1.25; max-width: 20ch; }
   .test-btn { padding: .8em 1.2em; font-size: .9rem; }
   .stamp {
-    position: absolute; right: -18px; top: -26px;
-    font: 800 1rem/1.05 var(--display); letter-spacing: -0.01em; text-align: center;
+    display: none;
+    font: 800 .95rem/1.05 var(--display); letter-spacing: -0.01em; text-align: center;
     color: var(--purple); background: rgba(244,240,231,.92);
     border: 3px solid var(--purple); border-radius: 10px;
-    padding: .45em .65em;
-    opacity: 0; transform: rotate(12deg) scale(1.9);
-    transition: transform .45s var(--spring), opacity .18s;
-    pointer-events: none;
+    padding: .4em .6em;
+    transform: rotate(-6deg);
   }
-  .brand-test.diagnosed .stamp { opacity: 1; transform: rotate(12deg) scale(1); }
+  .brand-test.diagnosed .test-msg { display: none; }
+  .brand-test.diagnosed .stamp { display: block; animation: stamp-in .45s var(--spring) both; }
+  @keyframes stamp-in { from { opacity: 0; transform: rotate(-6deg) scale(1.9); } to { opacity: 1; transform: rotate(-6deg) scale(1); } }
   .contact h2 { font-size: clamp(2.4rem, 5.6vw, 4.6rem); letter-spacing: -0.045em; line-height: .95; max-width: 16ch; }
   .contact-side { margin-top: var(--s3); }
+  .mail-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
+  .copy-mail {
+    all: unset; cursor: pointer;
+    font: 600 .85rem/1 var(--body); color: var(--lime);
+    border: 1.5px solid rgba(252,255,126,.55); border-radius: 999px; padding: .6em 1em;
+    transition: transform .3s var(--spring), background-color .2s, color .2s;
+  }
+  .copy-mail:hover { transform: translateY(-2px); border-color: var(--lime); }
+  .copy-mail:active { transform: scale(.95); }
+  .copy-mail:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  .copy-mail.done { background: var(--lime); color: var(--purple); }
   .contact-side p { color: #fff; font-size: clamp(1.15rem, 1.8vw, 1.4rem); max-width: 34ch; margin-bottom: var(--s4); }
   .mail {
     display: inline-block;
@@ -432,7 +502,8 @@
   /* content sits above the cloud layer (z 5), section backgrounds below it */
   .hero > .wrap, .sheet .wrap, .contact > .wrap, footer .wrap { position: relative; z-index: 6; }
   .cloud-layer { position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
-  .fc { position: absolute; left: 0; top: 0; will-change: transform; opacity: 0; transition: opacity 1.2s ease; }
+  .fc { position: absolute; left: 0; top: 0; will-change: transform; opacity: 0; transition: opacity .6s ease; }
+  .cloud-layer.ready .fc.hide { opacity: 0; }
   .cloud-layer.mul { mix-blend-mode: multiply; }
   .cloud-layer.ready .fc { opacity: 1; }
   .fc svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -500,7 +571,7 @@
   .contact .hand { color: var(--lime); }
   .box-note {
     display: flex; align-items: flex-end; justify-content: center; gap: .3rem;
-    margin-top: 3rem;
+    margin-top: 2.2rem;
     font-family: var(--hand); font-weight: 500; font-size: 1.1rem;
     color: var(--lime);
   }
@@ -526,11 +597,15 @@
     .box-stage { width: min(88%, 360px); padding-top: 230px; margin-bottom: var(--s2); }
     .sec-head, .case, .about, .contact-grid { grid-template-columns: 1fr; gap: var(--s3); }
     .brand-test { margin-top: var(--s4); transform: rotate(.8deg); }
-    .stamp { right: -6px; }
   }
   @media (max-width: 760px) {
     .nav .wrap { grid-template-columns: 1fr auto; }
     .nav-links { display: none; }
+    .nav-right > .lang { display: none; }
+    .nav-right { gap: .6rem; }
+    .menu-btn { display: grid; }
+    .nav-logo img { height: 34px; }
+    .nav .btn { padding: .7em 1em; font-size: .85rem; }
     .services { grid-template-columns: 1fr; }
     .box-stage { --k: .66; padding-top: 170px; }
     .box { --D: 26px; }
@@ -572,7 +647,7 @@
 <header class="nav">
   <div class="wrap">
     <a class="nav-logo" href="#top" aria-label="lazy kiddos, na začátek stránky">
-      <img src="brand_assets/LK_logotyp_lime_crop.png" alt="lazy kiddos">
+      <img src="/brand_assets/LK_logotyp_lime_crop.png" alt="lazy kiddos">
     </a>
     <nav aria-label="Hlavní navigace">
       <ul class="nav-links">
@@ -587,9 +662,23 @@
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
       <a class="btn btn-lime" href="#kontakt" data-en="Get in touch">Napište nám</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu"><span></span></button>
     </div>
   </div>
 </header>
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="#sluzby" data-en="what we do">co děláme</a></li>
+    <li><a href="#prace" data-en="work">práce</a></li>
+    <li><a href="#instagram" data-en="instagram">instagram</a></li>
+    <li><a href="#o-nas" data-en="about">o nás</a></li>
+    <li><a href="#kontakt" data-en="contact">kontakt</a></li>
+  </ul>
+  <div class="lang" role="group" aria-label="Jazyk / Language">
+    <button type="button" data-lang="cs" aria-pressed="true">CS</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
 
 <main id="top">
   <section class="hero">
@@ -597,7 +686,7 @@
       <div class="hero-grid">
         <div>
           <h1 data-en="Gen Z consultancy">Gen Z konzultační agentura</h1>
-          <p class="hero-lead" data-en="The average CMO is 38, so Gen Z often stays a mystery to them. We are Gen Z, so we know what works and we don&#x27;t have to guess.">Průměrný CMO má 38 let a Generace Z mu proto často zůstává záhadou. My Gen Z jsme, takže víme, co na ni funguje, a nemusíme hádat.</p>
+          <p class="hero-lead" data-en="Campaigns for Gen Z are rarely decided by Gen Z. We are Gen Z, so we know what works and we don&#x27;t have to guess.">O kampaních pro Gen Z většinou nerozhoduje Gen Z. My k ní patříme, takže víme, co na ni funguje, a nemusíme hádat.</p>
           <div class="hero-actions">
             <a class="btn btn-lime" href="#kontakt" data-en="Get in touch">Napište nám</a>
             <a class="btn btn-ghost" href="#prace" data-en="Our work">Naše práce</a>
@@ -620,12 +709,12 @@
               <span class="tape"></span>
               <span class="front-main">
                 <span class="front-brand">
-                  <img src="brand_assets/LK_logotyp_dark_crop.png" alt="">
+                  <img src="/brand_assets/LK_logotyp_dark_crop.png" alt="">
                   <span class="front-slogan" data-en="Botox for your brand.">Botox pro vaši značku.</span>
                 </span>
                 <svg viewBox="0 0 325.4 284.5"><path fill="#8719f4" d="M230.6,147.6c0-.1,0-.2,0-.3,0-.6,0-1.1-.1-1.7-1.1-10.5-9.6-18.9-20.1-20.1-2.6-.3-5.1-.1-7.4.4-4.1.9-7.8,3.2-10.5,6.5,0,0,0,0,0,0l-10.9,12.7c-.7.8-1.9,1-2.8.4-.9-.7-1-2-.3-2.9l4.3-5,1.5-1.6c.5-.6,1.1-1.2,1.5-1.9,3.1-4.1,5-9.1,5.1-14.3,0-1.3,0-2.5-.2-3.6-.2-1-.4-2-.7-3-3.2-10.3-13.8-18.5-24.4-18.2-.2,0-.4,0-.6,0-1.1,0-2.3.1-3.5.4-5.9,1.1-11.2,4.4-15,9.1l-1.3,1.7c-.6.7-1.2,1.4-1.8,2.1l-18.5,23.2c-.7.8-1.9,1-2.8.3-.9-.7-1-2-.3-2.9l5.7-6.6c1.2-1.3.7-3.4-1-4.1-3.1-1.3-6.6-2-10.3-1.7-11.3.7-20.6,9.9-21.4,21.2-.9,13.3,9.6,24.4,22.8,24.4s0,0,0,0c5.7,0,11-2.5,14.7-6.8l15.5-17.9c.6-.7,1.7-1,2.6-.5,1.1.7,1.3,2.1.5,3l-7.5,8.7c-.5.5-.9,1.1-1.3,1.7,0,.1-.2.3-.3.4-3.1,4.1-5,9.1-5.1,14.3,0,1.3,0,2.5.2,3.6.2,1,.4,2,.7,3,3.2,10.3,13.8,18.5,24.4,18.2.2,0,.4,0,.6,0,1.1,0,2.3-.1,3.5-.4,5.9-1.1,11.2-4.4,15-9.1l.8-1h0c0,0,1.1-1.3,1.1-1.3.4-.5.8-.9,1.2-1.4l8.9-11.1,7.6-9.6c.7-.6,1.8-.6,2.5,0,.9.7,1,2,.3,2.9l-5.7,6.6c-1,1.1-.8,2.8.3,3.7.2.2.4.3.7.4,3.1,1.3,6.6,2,10.3,1.7,11.3-.7,20.6-9.9,21.4-21.2,0-.1,0-.3,0-.4,0,0,0,0,0-.1,0-.3,0-.6,0-.9,0-.2,0-.5,0-.7Z"/></svg>
               </span>
-              <span class="front-info"><span data-en="Contents: 3 lazy kiddos">Obsah: 3 lazy kiddos</span><b data-en="For CMOs 38+">Pro CMO 38+</b></span>
+              <span class="front-info"><span data-en="Contents: 3 lazy kiddos">Obsah: 3 lazy kiddos</span><b data-en="For tired brands">Pro unavené značky</b></span>
             </span>
           </span>
           <span class="box-note"><span class="box-hint">klikněte, něco v ní je</span><svg viewBox="0 0 54 40" aria-hidden="true"><path d="M4 36 C 14 34, 30 30, 40 8"/><path d="M33 12 L40 7 L43 15"/></svg></span>
@@ -709,8 +798,8 @@
     <section class="sec" id="instagram" aria-labelledby="h-ig">
       <div class="wrap">
         <div class="sec-head">
-          <h2 id="h-ig">instagram</h2>
-          <p class="hand" data-en="what we&#x27;re up to">co zrovna řešíme</p>
+          <h2 id="h-ig" data-en="what we&#x27;re up to">co zrovna řešíme</h2>
+          <p class="hand" data-en="on Instagram @lazykiddos_">na Instagramu @lazykiddos_</p>
         </div>
         <div class="ig-frame">
           <div class="ig-scale">
@@ -728,7 +817,7 @@
       <section class="about" id="o-nas" aria-labelledby="h-onas">
         <p class="hand about-note" data-en="and yes, we really are Gen Z">a jo, fakt jsme Gen Z</p>
         <h2 id="h-onas" data-en="we are 3 lazy kiddos.">jsme 3 lazy kiddos.</h2>
-        <p data-en="We help brands with Gen Z, work at agencies, study at the Faculty of Social Sciences at Charles University, have a social life, do sports, travel, cook and eat, go out into nature, scroll, and love culture and art.">Pomáháme značkám s Gen Z, pracujeme v agenturách, studujeme na FSV Univerzity Karlovy, žijeme sociálním životem, sportujeme, cestujeme, vaříme a jíme, chodíme do přírody, scrollujeme a máme rádi kulturu a umění.</p>
+        <p data-en="We help brands with Gen Z, work at agencies, studied or still study at the Faculty of Social Sciences at Charles University, have a social life, do sports, travel, cook and eat, go out into nature, scroll, and love culture and art.">Pomáháme značkám s Gen Z, pracujeme v agenturách, vystudovali jsme nebo studujeme FSV Univerzity Karlovy, žijeme sociálním životem, sportujeme, cestujeme, vaříme a jíme, chodíme do přírody, scrollujeme a máme rádi kulturu a umění.</p>
       </section>
     </div>
   </div>
@@ -736,10 +825,13 @@
   <section class="contact" id="kontakt" aria-labelledby="h-kontakt">
     <div class="wrap contact-grid">
       <div class="contact-main">
-      <h2 id="h-kontakt" data-en="Sounds like your brand needs a botox?">Zní to, jako by vaše značka potřebovala botox?</h2>
+      <h2 id="h-kontakt" data-en="Sounds like your brand needs botox?">Zní to, jako by vaše značka potřebovala botox?</h2>
       <div class="contact-side">
         <p data-en="Then drop us a line. A few sentences about what you&#x27;re dealing with is enough, and we&#x27;ll sort out the rest over coffee.">Tak nám napište. Stačí pár vět o tom, co řešíte, a zbytek doladíme u kafe.</p>
-        <a class="mail" href="mailto:jakub@lazykiddos.com">jakub@lazykiddos.com</a>
+        <div class="mail-row">
+          <a class="mail" href="mailto:jakub@lazykiddos.com">jakub@lazykiddos.com</a>
+          <button class="copy-mail" type="button" data-en="Copy">Zkopírovat</button>
+        </div>
       </div>
       </div>
       <aside class="brand-test" aria-labelledby="h-test">
@@ -752,9 +844,9 @@
         </ul>
         <div class="test-result">
           <p class="test-msg" aria-live="polite">zaškrtněte, co na vás sedí</p>
+          <div class="stamp" aria-hidden="true">Diagnóza:<br>vaše značka<br>potřebuje botox</div>
           <a class="btn btn-ink test-btn" href="mailto:jakub@lazykiddos.com" data-en="Email Jakub">Napsat Jakubovi</a>
         </div>
-        <div class="stamp" aria-hidden="true">Diagnóza:<br>vaše značka<br>potřebuje botox</div>
       </aside>
     </div>
   </section>
@@ -762,7 +854,7 @@
 
 <footer>
   <div class="wrap">
-    <img src="brand_assets/LK_logotyp_lime_crop.png" alt="lazy kiddos">
+    <img src="/brand_assets/LK_logotyp_lime_crop.png" alt="lazy kiddos">
     <ul class="social">
       <li><a href="https://www.instagram.com/lazykiddos_/" target="_blank" rel="noopener">Instagram</a></li>
       <li><a href="https://www.linkedin.com/company/lazy-kiddos" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -779,10 +871,14 @@
       stage.classList.toggle('open', open);
       stage.setAttribute('aria-expanded', String(open));
       var en = document.documentElement.lang === 'en';
-      hint.textContent = open ? (en ? 'and close it again' : 'a zase zavřít') : (en ? 'click, there is something inside' : 'klikněte, něco v ní je');
+      hint.textContent = open ? (en ? 'this is what we do' : 'tohle všechno umíme') : (en ? 'click, there is something inside' : 'klikněte, něco v ní je');
       stage.dataset.open = open ? '1' : '';
     }
-    stage.addEventListener('click', function () { set(!stage.classList.contains('open')); });
+    stage.addEventListener('click', function () {
+      if (!stage.classList.contains('open')) { set(true); return; }
+      set(false);
+      setTimeout(function () { set(true); }, 380);
+    });
     setTimeout(function () { set(true); }, 1500);
   })();
   (function () {
@@ -806,7 +902,7 @@
       ['lime', 90], ['purple', 110], ['paper', 80], ['lime', 200], ['purple', 70],
       ['lime', 120], ['paper', 140]
     ];
-    if (small) defs = defs.slice(0, 8);
+    if (small) defs = [['lime', 150], ['purple', 120], ['paper', 90]];
     var W = window.innerWidth, H = window.innerHeight;
     var clouds = defs.map(function (d) {
       var el = document.createElement('div');
@@ -821,6 +917,18 @@
     });
     function draw(c) { c.el.style.transform = 'translate3d(' + c.x + 'px,' + c.y + 'px,0) rotate(' + c.r + 'deg)'; }
     clouds.forEach(draw);
+    var sheet = document.querySelector('.sheet');
+    function shade() {
+      if (!sheet) return;
+      var r = sheet.getBoundingClientRect();
+      for (var i = 0; i < clouds.length; i++) {
+        var c = clouds[i];
+        var over = c.y + c.h > r.top + 20 && c.y < r.bottom - 20;
+        if (over !== c.hidden) { c.hidden = over; c.el.classList.toggle('hide', over); }
+      }
+    }
+    shade();
+    window.addEventListener('scroll', shade, { passive: true });
     requestAnimationFrame(function () { layer.classList.add('ready'); mul.classList.add('ready'); });
     if (reduce) return;
 
@@ -875,6 +983,7 @@
         }
         draw(c);
       }
+      shade();
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -899,15 +1008,19 @@
       var stage = document.querySelector('.box-stage'), hint = stage && stage.querySelector('.box-hint');
       if (hint) {
         var open = stage.classList.contains('open');
-        hint.textContent = open ? (en ? 'and close it again' : 'a zase zavřít') : (en ? 'click, there is something inside' : 'klikněte, něco v ní je');
+        hint.textContent = open ? (en ? 'this is what we do' : 'tohle všechno umíme') : (en ? 'click, there is something inside' : 'klikněte, něco v ní je');
       }
-      try { localStorage.setItem('lk-lang', lang); } catch (e) {}
       document.dispatchEvent(new CustomEvent('lk-lang'));
     }
-    buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.lang); }); });
-    var saved = null;
-    try { saved = localStorage.getItem('lk-lang'); } catch (e) {}
-    if (saved === 'en') apply('en');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var path = b.dataset.lang === 'en' ? '/en' : '/';
+        try { history.pushState(null, '', path + location.hash); } catch (e) {}
+        apply(b.dataset.lang);
+      });
+    });
+    window.addEventListener('popstate', function () { apply(/^\/en(\/|$)/.test(location.pathname) ? 'en' : 'cs'); });
+    if (/^\/en(\/|$)/.test(location.pathname)) apply('en');
   })();
   (function () {
     var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -973,6 +1086,32 @@
     inputs.forEach(function (i) { i.addEventListener('change', render); });
     document.addEventListener('lk-lang', render);
     render();
+  })();
+  (function () {
+    var nav = document.querySelector('.nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    var btn = document.querySelector('.menu-btn'), menu = document.getElementById('mobile-menu');
+    function setMenu(open) {
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 760) setMenu(false); });
+    var copy = document.querySelector('.copy-mail');
+    if (copy) copy.addEventListener('click', function () {
+      var en = document.documentElement.lang === 'en';
+      function done() {
+        copy.classList.add('done');
+        copy.textContent = en ? 'Copied' : 'Zkopírováno';
+        setTimeout(function () { copy.classList.remove('done'); copy.textContent = en ? 'Copy' : 'Zkopírovat'; }, 1800);
+      }
+      if (navigator.clipboard) navigator.clipboard.writeText('jakub@lazykiddos.com').then(done, function () {});
+    });
   })();
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>

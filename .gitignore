@@ -6,6 +6,12 @@
 # Allow brand asset logos
 !brand_assets/*.png
 
+# Allow site icons and share image
+!og-image.png
+!favicon-32.png
+!apple-touch-icon.png
+!icon-512.png
+
 # Temporary screenshots
 temporary screenshots/
 
