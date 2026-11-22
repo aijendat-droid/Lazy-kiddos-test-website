@@ -399,7 +399,7 @@
   }
   .about h2 { font-size: clamp(2.6rem, 5.2vw, 4.4rem); letter-spacing: -0.045em; line-height: .95; margin-bottom: var(--s3); }
   .about p { max-width: 48ch; font-size: 1.1rem; }
-  .team { display: flex; justify-content: center; padding: var(--s2) 0; }
+  .team { display: flex; justify-content: center; padding: var(--s2) 0; margin-inline: auto; }
   .team li {
     width: clamp(100px, 10.5vw, 150px); aspect-ratio: 1; margin-left: -26px;
     border-radius: 50%; overflow: hidden;
@@ -622,7 +622,7 @@
     .hero-grid { grid-template-columns: 1fr; }
     .box-stage { width: min(88%, 360px); padding-top: 230px; margin-bottom: var(--s2); }
     .sec-head, .case, .about, .contact-grid { grid-template-columns: 1fr; gap: var(--s3); }
-    .team { justify-content: flex-start; padding: var(--s3) 0 0 6px; }
+    .team { justify-content: center; padding: var(--s3) 0 0; }
     .team li { width: clamp(88px, 22vw, 120px); margin-left: -20px; }
     .brand-test { margin-top: var(--s4); transform: rotate(.8deg); }
   }
